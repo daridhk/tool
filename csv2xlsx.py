@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import csv
 import xlsxwriter
+import sys
 
 csv_file = "c:/mysingle/temp/diff.csv"
 excel_file = "c:/mysingle/temp/diff.xlsx"
@@ -9,6 +10,8 @@ MESSAGE_END = "- `Additional Comments` :"
 REVERT = "Reverts "
 FILE_DIFF = ['(M)', '(A)', '(R)', ',(M)', ',(A)', ',(R)']
 
+if len(sys.argv) >= 2:
+    csv_file = sys.argv[1]
 fcsv = open(csv_file, 'r', encoding='utf-8-sig')
 sheet_csv = csv.reader(fcsv)
 fxls = xlsxwriter.Workbook(excel_file)
