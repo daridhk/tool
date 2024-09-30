@@ -5,13 +5,19 @@ import xlsxwriter
 import sys
 
 csv_file = "c:/mysingle/temp/diff.csv"
-excel_file = "c:/mysingle/temp/diff.xlsx"
+# excel_file = "c:/mysingle/temp/diff.xlsx"
+excel_file = "diff.xlsx"
 MESSAGE_END = "- `Additional Comments` :"
 REVERT = "Reverts "
 FILE_DIFF = ['(M)', '(A)', '(R)', ',(M)', ',(A)', ',(R)']
 
 if len(sys.argv) >= 2:
     csv_file = sys.argv[1]
+    if 'sonosync-server' in csv_file:
+        excel_file = 'sonosync-server-ChangeFileList.xlsx'
+    elif 'sonosync-web' in csv_file:
+        excel_file = 'sonosync-web-ChangeFileList.xlsx'
+
 fcsv = open(csv_file, 'r', encoding='utf-8-sig')
 sheet_csv = csv.reader(fcsv)
 fxls = xlsxwriter.Workbook(excel_file)
